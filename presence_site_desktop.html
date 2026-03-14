@@ -1,0 +1,720 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Cormorant:ital,wght@0,300;1,300&family=Jost:wght@200;300;400&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:'Jost',sans-serif;
+  font-weight:300;
+  background:#faf9f7;
+  color:#1a1a18;
+  min-height:100vh;
+  font-size:15px;
+  line-height:1.8;
+}
+
+/* NAV */
+nav{
+  position:fixed;top:0;left:0;right:0;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:28px 64px;
+  z-index:100;
+  background:rgba(250,249,247,0.92);
+  backdrop-filter:blur(8px);
+  border-bottom:0.5px solid rgba(26,26,24,0.08);
+}
+.nav-logo{
+  font-family:'Cormorant Garamond',serif;
+  font-weight:300;
+  font-size:20px;
+  letter-spacing:0.22em;
+  text-transform:uppercase;
+  color:#1a1a18;
+  cursor:pointer;
+}
+.nav-links{
+  display:flex;gap:40px;list-style:none;
+}
+.nav-links a{
+  font-family:'Jost',sans-serif;
+  font-weight:200;
+  font-size:11.5px;
+  letter-spacing:0.2em;
+  text-transform:uppercase;
+  text-decoration:none;
+  color:#1a1a18;
+  opacity:0.55;
+  transition:opacity 0.3s;
+  cursor:pointer;
+}
+.nav-links a:hover,.nav-links a.active{opacity:1;}
+
+/* SECTIONS */
+section{
+  min-height:100vh;
+  display:none;
+  padding:140px 0 80px;
+}
+section.visible{display:block;}
+
+/* PAGE 1 — ACCUEIL */
+#page1{
+  display:none;
+  position:relative;
+  overflow:hidden;
+}
+#page1.visible{display:block;}
+.p1-layout{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  min-height:calc(100vh - 140px);
+}
+.p1-left{
+  padding:60px 64px 80px;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+}
+.p1-right{
+  position:relative;
+  overflow:hidden;
+}
+.p1-right-bg{
+  position:absolute;inset:0;
+  background: linear-gradient(160deg, #e8e4dc 0%, #d4cfc5 40%, #c8c2b4 100%);
+}
+.p1-right-lines{
+  position:absolute;inset:0;
+  opacity:0.18;
+}
+.p1-right-text{
+  position:absolute;
+  bottom:64px;right:64px;
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;
+  font-weight:300;
+  font-size:13px;
+  letter-spacing:0.12em;
+  color:#1a1a18;
+  opacity:0.5;
+  text-align:right;
+}
+.p1-eyebrow{
+  font-family:'Jost',sans-serif;
+  font-weight:200;
+  font-size:10.5px;
+  letter-spacing:0.35em;
+  text-transform:uppercase;
+  color:#1a1a18;
+  opacity:0.4;
+  margin-bottom:48px;
+}
+.p1-hero-title{
+  font-family:'Cormorant Garamond',serif;
+  font-weight:300;
+  font-size:clamp(52px,5.5vw,78px);
+  line-height:1.05;
+  letter-spacing:-0.01em;
+  color:#1a1a18;
+  margin-bottom:12px;
+}
+.p1-hero-title em{
+  font-style:italic;
+  color:#5a5650;
+}
+.p1-sub{
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;
+  font-weight:300;
+  font-size:17px;
+  letter-spacing:0.05em;
+  color:#1a1a18;
+  opacity:0.5;
+  margin-bottom:64px;
+}
+.p1-body{
+  font-weight:300;
+  font-size:14.5px;
+  line-height:1.9;
+  color:#3a3934;
+  max-width:400px;
+  margin-bottom:48px;
+}
+.p1-body p+p{margin-top:20px;}
+.p1-bottom{
+  display:flex;
+  align-items:center;
+  gap:32px;
+}
+.btn-primary{
+  font-family:'Jost',sans-serif;
+  font-weight:300;
+  font-size:11px;
+  letter-spacing:0.28em;
+  text-transform:uppercase;
+  text-decoration:none;
+  color:#1a1a18;
+  border:0.5px solid rgba(26,26,24,0.35);
+  padding:14px 32px;
+  cursor:pointer;
+  transition:all 0.3s;
+  background:transparent;
+  display:inline-block;
+}
+.btn-primary:hover{
+  background:#1a1a18;
+  color:#faf9f7;
+}
+.p1-line-deco{
+  width:40px;
+  height:0.5px;
+  background:rgba(26,26,24,0.3);
+}
+.p1-caption{
+  font-size:11px;
+  letter-spacing:0.15em;
+  opacity:0.35;
+  text-transform:uppercase;
+}
+
+/* ORNAMENT SVG */
+.ornament{
+  position:absolute;
+  opacity:0.12;
+}
+
+/* PAGE 2 — ESPRIT */
+#page2{padding:140px 64px 100px;}
+.p2-layout{
+  display:grid;
+  grid-template-columns:1fr 2fr;
+  gap:120px;
+  max-width:1100px;
+  margin:0 auto;
+}
+.p2-left{}
+.p2-num{
+  font-family:'Cormorant',serif;
+  font-weight:300;
+  font-style:italic;
+  font-size:120px;
+  line-height:1;
+  color:#1a1a18;
+  opacity:0.06;
+  margin-bottom:-20px;
+  margin-left:-8px;
+}
+.p2-label{
+  font-size:10px;
+  letter-spacing:0.35em;
+  text-transform:uppercase;
+  opacity:0.3;
+  margin-bottom:40px;
+}
+.p2-sidebar-quote{
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;
+  font-weight:300;
+  font-size:19px;
+  line-height:1.55;
+  color:#1a1a18;
+  opacity:0.65;
+  max-width:200px;
+  padding-left:20px;
+  border-left:1px solid rgba(26,26,24,0.15);
+}
+.p2-right{}
+.p2-title{
+  font-family:'Cormorant Garamond',serif;
+  font-weight:300;
+  font-size:48px;
+  line-height:1.12;
+  letter-spacing:-0.01em;
+  margin-bottom:40px;
+  color:#1a1a18;
+}
+.p2-title em{font-style:italic;opacity:0.6;}
+.p2-body{
+  font-size:15px;
+  line-height:1.95;
+  color:#3a3934;
+  max-width:560px;
+}
+.p2-body p+p{margin-top:22px;}
+.p2-footnote{
+  margin-top:56px;
+  padding-top:32px;
+  border-top:0.5px solid rgba(26,26,24,0.1);
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;
+  font-size:14px;
+  letter-spacing:0.06em;
+  opacity:0.45;
+  display:flex;
+  align-items:center;
+  gap:16px;
+}
+.p2-footnote::before{
+  content:'';
+  display:block;
+  width:24px;
+  height:0.5px;
+  background:currentColor;
+  flex-shrink:0;
+}
+
+/* PAGE 3 — LES RENCONTRES */
+#page3{padding:140px 64px 100px;background:#faf9f7;}
+.p3-header{
+  max-width:1100px;
+  margin:0 auto 80px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:80px;
+  align-items:end;
+}
+.p3-title{
+  font-family:'Cormorant Garamond',serif;
+  font-weight:300;
+  font-size:52px;
+  line-height:1.1;
+  letter-spacing:-0.01em;
+  color:#1a1a18;
+}
+.p3-title em{font-style:italic;opacity:0.55;}
+.p3-intro{
+  font-size:14.5px;
+  line-height:1.95;
+  color:#3a3934;
+  padding-top:8px;
+}
+.p3-cards{
+  max-width:1100px;
+  margin:0 auto;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:1px;
+  background:rgba(26,26,24,0.08);
+  border:0.5px solid rgba(26,26,24,0.08);
+}
+.p3-card{
+  background:#faf9f7;
+  padding:48px 40px;
+}
+.p3-card-num{
+  font-family:'Cormorant',serif;
+  font-style:italic;
+  font-weight:300;
+  font-size:36px;
+  color:#1a1a18;
+  opacity:0.12;
+  margin-bottom:28px;
+}
+.p3-card-title{
+  font-family:'Cormorant Garamond',serif;
+  font-weight:400;
+  font-size:19px;
+  letter-spacing:0.04em;
+  color:#1a1a18;
+  margin-bottom:16px;
+}
+.p3-card-body{
+  font-size:13.5px;
+  line-height:1.9;
+  color:#5a5650;
+}
+.p3-bottom{
+  max-width:1100px;
+  margin:80px auto 0;
+  padding-top:48px;
+  border-top:0.5px solid rgba(26,26,24,0.1);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+.p3-bottom-text{
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;
+  font-size:18px;
+  line-height:1.6;
+  max-width:460px;
+  color:#3a3934;
+  opacity:0.7;
+}
+.p3-cta{cursor:pointer;}
+
+/* PAGE 4 — CONTACT */
+#page4{
+  padding:140px 64px 100px;
+  min-height:100vh;
+  display:none;
+  flex-direction:column;
+  justify-content:center;
+}
+#page4.visible{display:flex;}
+.p4-layout{
+  max-width:1100px;
+  margin:0 auto;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:120px;
+  align-items:start;
+  width:100%;
+}
+.p4-left{}
+.p4-eyebrow{
+  font-size:10px;
+  letter-spacing:0.35em;
+  text-transform:uppercase;
+  opacity:0.3;
+  margin-bottom:32px;
+}
+.p4-title{
+  font-family:'Cormorant Garamond',serif;
+  font-weight:300;
+  font-size:52px;
+  line-height:1.1;
+  letter-spacing:-0.01em;
+  color:#1a1a18;
+  margin-bottom:32px;
+}
+.p4-title em{font-style:italic;opacity:0.55;}
+.p4-body{
+  font-size:14.5px;
+  line-height:1.95;
+  color:#3a3934;
+  margin-bottom:64px;
+  max-width:380px;
+}
+.p4-contact-item{
+  display:flex;
+  flex-direction:column;
+  gap:4px;
+  margin-bottom:28px;
+}
+.p4-contact-label{
+  font-size:9.5px;
+  letter-spacing:0.3em;
+  text-transform:uppercase;
+  opacity:0.35;
+}
+.p4-contact-value{
+  font-family:'Cormorant Garamond',serif;
+  font-size:20px;
+  letter-spacing:0.02em;
+  color:#1a1a18;
+  opacity:0.7;
+}
+.p4-note{
+  margin-top:64px;
+  padding-top:40px;
+  border-top:0.5px solid rgba(26,26,24,0.1);
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;
+  font-size:14px;
+  opacity:0.4;
+  line-height:1.7;
+  max-width:340px;
+}
+.p4-right{
+  padding-top:8px;
+}
+.p4-form-title{
+  font-family:'Cormorant Garamond',serif;
+  font-weight:400;
+  font-size:20px;
+  letter-spacing:0.04em;
+  color:#1a1a18;
+  margin-bottom:36px;
+  opacity:0.6;
+}
+.p4-field{
+  margin-bottom:28px;
+}
+.p4-field label{
+  display:block;
+  font-size:9.5px;
+  letter-spacing:0.3em;
+  text-transform:uppercase;
+  opacity:0.4;
+  margin-bottom:10px;
+}
+.p4-field input,
+.p4-field textarea{
+  width:100%;
+  background:transparent;
+  border:none;
+  border-bottom:0.5px solid rgba(26,26,24,0.2);
+  padding:8px 0 12px;
+  font-family:'Jost',sans-serif;
+  font-weight:300;
+  font-size:14px;
+  color:#1a1a18;
+  outline:none;
+  transition:border-color 0.3s;
+  resize:none;
+}
+.p4-field input:focus,
+.p4-field textarea:focus{
+  border-bottom-color:rgba(26,26,24,0.6);
+}
+.p4-field textarea{height:90px;}
+.p4-submit{
+  margin-top:8px;
+}
+.p4-discretion{
+  margin-top:20px;
+  font-size:11px;
+  letter-spacing:0.08em;
+  opacity:0.3;
+  font-style:italic;
+}
+
+/* FOOTER */
+footer{
+  padding:40px 64px;
+  border-top:0.5px solid rgba(26,26,24,0.08);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+.footer-logo{
+  font-family:'Cormorant Garamond',serif;
+  font-weight:300;
+  font-size:14px;
+  letter-spacing:0.22em;
+  text-transform:uppercase;
+  opacity:0.3;
+}
+.footer-copy{
+  font-size:10.5px;
+  letter-spacing:0.12em;
+  opacity:0.25;
+}
+
+/* FADE IN */
+.fade-in{
+  opacity:0;
+  transform:translateY(18px);
+  transition:opacity 0.7s ease, transform 0.7s ease;
+}
+.fade-in.show{
+  opacity:1;
+  transform:translateY(0);
+}
+.delay-1{transition-delay:0.1s;}
+.delay-2{transition-delay:0.22s;}
+.delay-3{transition-delay:0.36s;}
+.delay-4{transition-delay:0.5s;}
+.delay-5{transition-delay:0.64s;}
+
+/* deco line */
+.h-rule{
+  width:32px;height:0.5px;
+  background:rgba(26,26,24,0.25);
+  margin:32px 0;
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo" onclick="goTo('page1')">Présence</div>
+  <ul class="nav-links">
+    <li><a onclick="goTo('page1')" id="nav-page1" class="active">Accueil</a></li>
+    <li><a onclick="goTo('page2')" id="nav-page2">Esprit</a></li>
+    <li><a onclick="goTo('page3')" id="nav-page3">Les rencontres</a></li>
+    <li><a onclick="goTo('page4')" id="nav-page4">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- PAGE 1 -->
+<section id="page1" class="visible">
+  <div class="p1-layout">
+    <div class="p1-left">
+      <div>
+        <p class="p1-eyebrow fade-in">Conversations confidentielles dans la durée</p>
+        <h1 class="p1-hero-title fade-in delay-1">
+          Un espace<br>pour <em>parler</em><br>librement.
+        </h1>
+        <p class="p1-sub fade-in delay-2">Sans jugement. Sans analyse.</p>
+        <div class="h-rule fade-in delay-2"></div>
+        <div class="p1-body fade-in delay-3">
+          <p>Certaines conversations ne trouvent pas leur place dans la vie quotidienne. Ni auprès de la famille. Ni auprès des amis. Parfois même pas dans un cadre thérapeutique.</p>
+          <p>PRÉSENCE propose un espace discret où la parole peut se déposer librement — un moment pour réfléchir à voix haute, prendre du recul et clarifier ses pensées.</p>
+        </div>
+      </div>
+      <div class="p1-bottom fade-in delay-4">
+        <a class="btn-primary" onclick="goTo('page2')">Découvrir l'esprit</a>
+        <div class="p1-line-deco"></div>
+        <span class="p1-caption">Paris</span>
+      </div>
+    </div>
+    <div class="p1-right">
+      <div class="p1-right-bg"></div>
+      <svg class="ornament" style="top:10%;right:8%;width:280px;height:280px;" viewBox="0 0 280 280" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="140" cy="140" r="139" stroke="#1a1a18" stroke-width="0.5"/>
+        <circle cx="140" cy="140" r="100" stroke="#1a1a18" stroke-width="0.5"/>
+        <circle cx="140" cy="140" r="60" stroke="#1a1a18" stroke-width="0.5"/>
+        <line x1="0" y1="140" x2="280" y2="140" stroke="#1a1a18" stroke-width="0.5"/>
+        <line x1="140" y1="0" x2="140" y2="280" stroke="#1a1a18" stroke-width="0.5"/>
+        <line x1="41" y1="41" x2="239" y2="239" stroke="#1a1a18" stroke-width="0.5"/>
+        <line x1="239" y1="41" x2="41" y2="239" stroke="#1a1a18" stroke-width="0.5"/>
+      </svg>
+      <svg class="ornament" style="bottom:15%;left:10%;width:160px;height:160px;" viewBox="0 0 160 160" fill="none">
+        <rect x="1" y="1" width="158" height="158" stroke="#1a1a18" stroke-width="0.5"/>
+        <rect x="20" y="20" width="120" height="120" stroke="#1a1a18" stroke-width="0.5"/>
+        <rect x="40" y="40" width="80" height="80" stroke="#1a1a18" stroke-width="0.5"/>
+        <line x1="1" y1="1" x2="159" y2="159" stroke="#1a1a18" stroke-width="0.5"/>
+        <line x1="159" y1="1" x2="1" y2="159" stroke="#1a1a18" stroke-width="0.5"/>
+      </svg>
+      <div class="p1-right-text">
+        Lieux calmes &amp; élégants<br>propices à l'échange
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PAGE 2 -->
+<section id="page2">
+  <div class="p2-layout">
+    <div class="p2-left">
+      <div class="p2-num fade-in">02</div>
+      <div class="p2-label fade-in delay-1">Esprit</div>
+      <div class="p2-sidebar-quote fade-in delay-2">
+        La valeur d'une présence attentive.
+      </div>
+    </div>
+    <div class="p2-right">
+      <h2 class="p2-title fade-in">
+        Certaines conversations<br>méritent un espace <em>différent.</em>
+      </h2>
+      <div class="p2-body fade-in delay-1">
+        <p>Dans la vie, il n'est pas toujours possible de tout dire. Ni à la famille, ni aux amis. Et parfois, ce que l'on cherche n'est ni un conseil, ni une analyse.</p>
+        <p>Parler à voix haute, dans un cadre discret, avec une personne extérieure et attentive, permet souvent de voir les choses autrement.</p>
+        <p>PRÉSENCE propose cet espace de conversation libre et confidentiel.</p>
+        <p>Ce projet est porté par une femme pour qui la qualité de présence, l'attention aux autres et l'expérience humaine sont au cœur de chaque rencontre.</p>
+        <p>Ici, il ne s'agit ni de thérapie ni de coaching. Simplement d'un échange authentique, fondé sur l'écoute, la discrétion et la confiance.</p>
+      </div>
+      <div class="p2-footnote fade-in delay-2">
+        La valeur d'une présence attentive.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PAGE 3 -->
+<section id="page3">
+  <div class="p3-header">
+    <h2 class="p3-title fade-in">Les<br><em>rencontres.</em></h2>
+    <p class="p3-intro fade-in delay-1">Les rencontres sont individuelles et strictement confidentielles. Elles se déroulent dans des lieux publics calmes et adaptés à la qualité de l'échange.</p>
+  </div>
+  <div class="p3-cards">
+    <div class="p3-card fade-in">
+      <div class="p3-card-num">01</div>
+      <div class="p3-card-title">Confidentialité</div>
+      <p class="p3-card-body">Chaque échange est strictement privé. La discrétion est la condition première de la parole libre.</p>
+    </div>
+    <div class="p3-card fade-in delay-1">
+      <div class="p3-card-num">02</div>
+      <div class="p3-card-title">Rythme &amp; durée</div>
+      <p class="p3-card-body">Un accompagnement de trois mois, à raison de deux rencontres par mois — pour installer une continuité, une confiance et une véritable profondeur.</p>
+    </div>
+    <div class="p3-card fade-in delay-2">
+      <div class="p3-card-num">03</div>
+      <div class="p3-card-title">Cadre</div>
+      <p class="p3-card-body">Des lieux calmes et élégants, choisis pour leur qualité de présence. Un temps dédié, hors du rythme habituel du quotidien.</p>
+    </div>
+  </div>
+  <div class="p3-bottom">
+    <p class="p3-bottom-text fade-in">Certaines personnes traversent une période particulière. D'autres ressentent simplement le besoin d'un espace pour réfléchir et prendre du recul.</p>
+    <a class="btn-primary p3-cta fade-in delay-2" onclick="goTo('page4')">Prendre contact</a>
+  </div>
+</section>
+
+<!-- PAGE 4 -->
+<section id="page4">
+  <div class="p4-layout">
+    <div class="p4-left">
+      <div class="p4-eyebrow fade-in">Contact</div>
+      <h2 class="p4-title fade-in delay-1">Entrer en<br><em>contact.</em></h2>
+      <p class="p4-body fade-in delay-2">Si vous souhaitez obtenir plus d'informations ou organiser une première rencontre, vous pouvez me contacter directement. Chaque demande est reçue et traitée avec la plus grande discrétion.</p>
+      <div class="fade-in delay-3">
+        <div class="p4-contact-item">
+          <span class="p4-contact-label">Téléphone</span>
+          <span class="p4-contact-value">—</span>
+        </div>
+        <div class="p4-contact-item">
+          <span class="p4-contact-label">Email</span>
+          <span class="p4-contact-value">—</span>
+        </div>
+      </div>
+      <p class="p4-note fade-in delay-4">PRÉSENCE est un accompagnement personnel. Les rencontres se font directement avec moi.</p>
+    </div>
+    <div class="p4-right">
+      <p class="p4-form-title fade-in">Première prise de contact</p>
+      <form onsubmit="return false;">
+        <div class="p4-field fade-in delay-1">
+          <label>Votre prénom</label>
+          <input type="text" autocomplete="off">
+        </div>
+        <div class="p4-field fade-in delay-2">
+          <label>Email ou téléphone</label>
+          <input type="text" autocomplete="off">
+        </div>
+        <div class="p4-field fade-in delay-3">
+          <label>Un mot, si vous le souhaitez</label>
+          <textarea></textarea>
+        </div>
+        <div class="p4-submit fade-in delay-4">
+          <button class="btn-primary" type="submit">Envoyer</button>
+          <p class="p4-discretion">Votre message sera traité avec la plus grande confidentialité.</p>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span class="footer-logo">Présence</span>
+  <span class="footer-copy">Conversations confidentielles — Paris</span>
+</footer>
+
+<script>
+function goTo(id){
+  document.querySelectorAll('section').forEach(s=>{
+    s.classList.remove('visible');
+    if(s.id==='page4') s.style.display='none';
+  });
+  document.querySelectorAll('.nav-links a').forEach(a=>a.classList.remove('active'));
+  const target=document.getElementById(id);
+  if(id==='page4'){
+    target.style.display='flex';
+    setTimeout(()=>target.classList.add('visible'),10);
+  } else {
+    target.classList.add('visible');
+  }
+  document.getElementById('nav-'+id).classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+  triggerFade();
+}
+
+function triggerFade(){
+  setTimeout(()=>{
+    document.querySelectorAll('.fade-in').forEach(el=>el.classList.remove('show'));
+    requestAnimationFrame(()=>{
+      requestAnimationFrame(()=>{
+        document.querySelectorAll('section.visible .fade-in').forEach(el=>el.classList.add('show'));
+      });
+    });
+  },40);
+}
+
+window.addEventListener('load',()=>triggerFade());
+</script>
+</body>
+</html>
